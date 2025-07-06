@@ -1,7 +1,7 @@
 /* /////////////
     Estilos globales
 ///////////// */
-h1 {
+h1, h2 {
     text-align: center;
 }
 
@@ -24,13 +24,13 @@ header {
 }
 
 .img-logo {
-    width: 55px; 
+    width: 200px; 
 }
 
 #logo-nav {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 #listado-nav {
@@ -126,4 +126,79 @@ header {
 
 .front .li-listados h3{
     text-align:center;
+}
+
+.front .img-listados{
+    width: auto;
+    height: 100px;
+}
+
+nav.paginacion{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom:50px;
+}
+
+nav.paginacion > .navBlock.numbers a, nav.paginacion > .navBlock.numbers strong{
+    margin:0 4px;
+}
+
+#foco{
+    display:block;
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    width:50px;
+    transition: all .2s ease-in-out;
+}
+
+#foco:hover{
+    bottom:14px;
+    cursor:pointer;
+}
+
+body.claro{background:#ffffff;}
+.claro h1, .claro h2, .claro h3, .claro p, .claro strong, .claro #carrito-container th, .claro #carrito-container td{color:#1C1C1C;}
+.claro #productos-lista li{background:#F4F4F4; border-color:#DDDDDD;}
+.claro button{background:#2E7D32; transition:all .2s ease-in-out;}
+.claro button:hover{background:#1B5E20;}
+.claro a{color:#2E7D32; transition:all .2s ease-in-out;}
+.claro a:hover{color:#1B5E20;}
+
+body.oscuro{background: #121212;}
+.oscuro h1, .oscuro h2, .oscuro h3, .oscuro p, .oscuro strong, .oscuro #carrito-container th, .oscuro #carrito-container td{color:#EAEAEA;}
+.oscuro #productos-lista li{background:#1E1E1E; border-color:#333333;}
+.oscuro button{background:#2E7D32; transition:all .2s ease-in-out;}
+.oscuro button:hover{background:#1B5E20;}
+.oscuro a{color:#2E7D32; transition:all .2s ease-in-out;}
+.oscuro a:hover{color:#1B5E20;}
+
+/*###########################*/
+/*##########CARRITO##########*/
+/*###########################*/
+
+.titulo-carrito{margin:0;}
+
+#carrito-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+#carrito-container th,
+#carrito-container td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+#carrito-container img {
+  height: 50px;
+  width: auto;
+}
+
+#carrito-container tbody tr:nth-child(even) {
+    background-color: transparent;
 }

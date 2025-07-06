@@ -1,2 +1,34 @@
+<img src="/img/light_on.png" alt="" id="foco">
 </body>
+
+<script>
+    let foco = document.getElementById("foco");
+
+    function aplicarTema() {
+        const tema = localStorage.getItem("tema") || "claro";
+        document.body.classList.remove("claro", "oscuro");
+        document.body.classList.add(tema);
+
+        if(tema == "claro"){
+            foco.src = "/img/light_on.png";
+        }
+        else{
+            foco.src = "/img/light_off.png";
+        }
+    }
+    function cambiarTema() {
+        const temaActual = localStorage.getItem("tema") || "claro";
+        const nuevoTema = temaActual === "claro" ? "oscuro" : "claro";
+        localStorage.setItem("tema", nuevoTema);
+        aplicarTema();
+    }
+    // Aplica el tema cuando se carga la página
+    window.addEventListener("DOMContentLoaded", aplicarTema);
+    window.addEventListener("DOMContentLoaded", mostrarCarrito);
+
+    foco.addEventListener("click", function(){
+        cambiarTema();
+    });
+</script>
+
 </html>

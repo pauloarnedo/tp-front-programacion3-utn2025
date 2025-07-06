@@ -21,35 +21,43 @@ export const vistaIndex = async (req, res) => {
     }
 }
 
-// Get view for Products
+// Get view for Products con paginación
 export const vistaFront = async (req, res) => {
-    
-    try {
-        const respuestaProductos = await Products.selectAllProducts();
+  try {
+    const respuestaProductos = await Products.selectAllProducts();
+    const productos = respuestaProductos[0];
 
-        let orden = req.query.orden || 'az'; // valor por defecto
-        let productosOrdenados = [...respuestaProductos[0]]; // copiamos el array para no mutarlo
+    // Filtrar solo los productos activos
+    const productosActivos = productos.filter(producto => producto.active === 1);
 
-        if (orden === 'az') {
-            productosOrdenados.sort((a, b) => a.name.localeCompare(b.name));
-        } else if (orden === 'za') {
-            productosOrdenados.sort((a, b) => b.name.localeCompare(a.name));
-        }
+    const perPage = 9;
+    const page = parseInt(req.query.page) || 1;
 
-        res.render("front", {
-            title: "Listado de productos",
-            name: "front",
-            products: productosOrdenados,
-            order: orden
-        });
+    const totalProductos = productosActivos.length;
+    const totalPages = Math.ceil(totalProductos / perPage);
 
-    } catch (error) {
-        console.error("Error obteniendo la informacion", error.message);
-        res.status(500).json({
-            error: "Error interno al obtener la informacion"
-        })
-    }
-}
+    // Validar que la página no sea menor a 1 ni mayor a totalPages
+    const currentPage = Math.min(Math.max(page, 1), totalPages);
+
+    // Obtener productos correspondientes a la página
+    const start = (currentPage - 1) * perPage;
+    const end = start + perPage;
+    const productosPaginados = productosActivos.slice(start, end);
+
+    res.render("front", {
+      title: "Listado de productos",
+      name: "front",
+      products: productosPaginados,
+      page: currentPage,
+      pages: totalPages
+    });
+  } catch (error) {
+    console.error("Error obteniendo la informacion", error.message);
+    res.status(500).json({
+      error: "Error interno al obtener la informacion"
+    });
+  }
+};
 
 
 // Get view for get by id
