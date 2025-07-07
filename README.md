@@ -10,6 +10,8 @@ Crear filtro para los tipos de producto (juego o consola).
 
 Hacer responsive.
 
+Armar lógica para que no se muestren los productos eliminados.
+
 Crear pdf ticket.
 
 Limpiar el código del ejemplo del back. Sacar todas las páginas que no van, dejar únicamente lo necesario.
