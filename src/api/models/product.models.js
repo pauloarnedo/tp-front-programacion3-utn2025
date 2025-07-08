@@ -3,8 +3,9 @@ import connection from "../database/db.js";
 
 //////////////////////////
 // Select all products //
-const selectAllProducts = async () => {
-    let sql = `SELECT * FROM products`;
+const selectActiveProducts = async () => {
+    //let sql = `SELECT * FROM products`;
+    let sql = `SELECT * FROM products WHERE active = 1`;
     
     // Al usar [rows] la desestructuracion extrae directamente las filas, que es el primer resultado de la consulta, esto hace el codigo mas legible y explicito
     return await connection.query(sql);
@@ -51,7 +52,7 @@ const deleteProduct = async (id) => {
 }
 
 export default {
-    selectAllProducts,
+    selectActiveProducts,
     selectProductFromId,
     insertNewProduct,
     updateProduct,

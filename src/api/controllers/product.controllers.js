@@ -3,19 +3,12 @@ import Products from "../models/product.models.js";
 
 
 // Get all products
-export const getAllProducts = async (req, res) => {
+export const getActiveProducts = async (req, res) => {
 
-    try { // Optimizacion 1, manejo de errores con try/catch
+    try {
 
-        /* LOGICA EXPORTADA AL MODELO
-        let sql = `SELECT * FROM products`;
-    
-        // Al usar [rows] la desestructuracion extrae directamente las filas, que es el primer resultado de la consulta, esto hace el codigo mas legible y explicito
-        let [rows] = await connection.query(sql); */
-
-        let [rows] = Products.selectAllProducts();
+        let [rows] = Products.selectActiveProducts();
         
-        // Optimizacion 2, responder con exito, aunque no existiera ningun producto
         res.status(200).json({
             payload: rows,
             message: rows.length === 0 ? "No se encontraron productos" : "Productos encontrados"

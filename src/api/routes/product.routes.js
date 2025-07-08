@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { validateId } from "../middlewares/middlewares.js";
-import { createProduct, getAllProducts, getProductById, modifyProduct, removeProduct } from "../controllers/product.controllers.js";
+import { createProduct, getActiveProducts, getProductById, modifyProduct, removeProduct } from "../controllers/product.controllers.js";
 
 
 const router = Router();
@@ -8,7 +8,7 @@ const router = Router();
 
 ///////////////////
 // GET products //
-router.get("/", getAllProducts);
+router.get("/", getActiveProducts);
 
 
 

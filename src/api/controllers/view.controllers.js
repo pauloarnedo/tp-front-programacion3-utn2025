@@ -5,7 +5,7 @@ import Products from "../models/product.models.js";
 export const vistaIndex = async (req, res) => {
     
     try {
-        const respuestaProductos = await Products.selectAllProducts();
+        const respuestaProductos = await Products.selectActiveProducts();
 
         res.render("index", {
             title: "Listado de productos",
@@ -24,7 +24,7 @@ export const vistaIndex = async (req, res) => {
 // Get view for Products con paginación
 export const vistaFront = async (req, res) => {
   try {
-    const respuestaProductos = await Products.selectAllProducts();
+    const respuestaProductos = await Products.selectActiveProducts();
     const productos = respuestaProductos[0];
 
     // Filtrar solo los productos activos
