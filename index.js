@@ -3,7 +3,7 @@
 import express from "express";
 import environments from "./src/api/config/environments.js";
 import cors from "cors";
-import { productRoutes, viewRoutes } from "./src/api/routes/index.js";
+import { productRoutes, viewRoutes, salesRoutes} from "./src/api/routes/index.js";
 import { loggerUrl } from "./src/api/middlewares/middlewares.js";
 import { __dirname, join } from "./src/api/utils/index.js";
 
@@ -44,6 +44,9 @@ app.use("/api/products", productRoutes);
 
 // Rutas de las vistas EJS
 app.use("/dashboard", viewRoutes);
+
+// Rutas de ventas
+app.use("/ventas", salesRoutes);
 
 
 app.listen(PORT, () => {

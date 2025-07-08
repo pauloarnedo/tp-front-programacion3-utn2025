@@ -202,3 +202,9 @@ body.oscuro{background: #121212;}
 #carrito-container tbody tr:nth-child(even) {
     background-color: transparent;
 }
+
+#carrito-container .total{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
