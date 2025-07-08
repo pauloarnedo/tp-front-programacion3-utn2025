@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-07-2025 a las 14:30:15
+-- Tiempo de generación: 08-07-2025 a las 05:13:50
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -34,6 +34,38 @@ CREATE TABLE `detalle_ventas` (
   `cantidad` int(11) DEFAULT NULL,
   `precio_unitario` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_ventas`
+--
+
+INSERT INTO `detalle_ventas` (`id`, `venta_id`, `producto_id`, `cantidad`, `precio_unitario`) VALUES
+(1, 1, 8, 1, '74500.00'),
+(2, 1, 9, 1, '90000.00'),
+(3, 1, 6, 1, '28500.00'),
+(4, 2, 8, 1, '74500.00'),
+(5, 3, 8, 1, '74500.00'),
+(6, 3, 6, 3, '28500.00'),
+(7, 3, 2, 8, '38500.00'),
+(8, 3, 3, 1, '45000.00'),
+(9, 3, 5, 3, '53000.00'),
+(10, 4, 8, 1, '74500.00'),
+(11, 5, 8, 1, '74500.00'),
+(12, 5, 5, 1, '53000.00'),
+(13, 5, 2, 1, '38500.00'),
+(14, 6, 8, 1, '74500.00'),
+(15, 6, 6, 1, '28500.00'),
+(16, 7, 8, 1, '74500.00'),
+(17, 7, 5, 1, '53000.00'),
+(18, 8, 8, 1, '74500.00'),
+(19, 9, 8, 1, '74500.00'),
+(20, 10, 8, 1, '74500.00'),
+(21, 11, 8, 1, '74500.00'),
+(22, 11, 5, 1, '53000.00'),
+(23, 11, 6, 1, '28500.00'),
+(24, 12, 8, 1, '74500.00'),
+(25, 13, 8, 1, '74500.00'),
+(26, 13, 9, 3, '90000.00');
 
 -- --------------------------------------------------------
 
@@ -93,6 +125,25 @@ CREATE TABLE `ventas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `ventas`
+--
+
+INSERT INTO `ventas` (`id`, `usuario`, `fecha`, `total`) VALUES
+(1, 'Josefina', '2025-07-07 22:48:41', '193000.00'),
+(2, 'Josefina', '2025-07-07 22:51:08', '74500.00'),
+(3, 'Josefina', '2025-07-07 23:03:38', '672000.00'),
+(4, 'Josefina', '2025-07-07 23:14:46', '74500.00'),
+(5, 'Josefina', '2025-07-07 23:15:01', '166000.00'),
+(6, 'Josefina', '2025-07-07 23:29:15', '103000.00'),
+(7, 'Carlos', '2025-07-07 23:32:30', '127500.00'),
+(8, 'Carlitos', '2025-07-07 23:45:02', '74500.00'),
+(9, 'Carlitos', '2025-07-07 23:45:46', '74500.00'),
+(10, 'asd', '2025-07-07 23:50:16', '74500.00'),
+(11, '222', '2025-07-08 00:02:09', '156000.00'),
+(12, '1651651', '2025-07-08 00:11:34', '74500.00'),
+(13, 'Miguelito', '2025-07-08 00:12:03', '344500.00');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -124,7 +175,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `detalle_ventas`
 --
 ALTER TABLE `detalle_ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
@@ -136,7 +187,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas

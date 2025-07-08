@@ -62,6 +62,24 @@
             <div id="carrito-container"></div>
         </section>
     </main>
+
+  <div id="modal-compra" class="modal hidden">
+    <div class="modal-content">
+      <h2>¡Compra realizada con éxito!</h2>
+      <p>¿Qué querés hacer ahora?</p>
+      <button id="btn-reiniciar">Reiniciar sistema</button>
+      <button id="btn-imprimir">Imprimir ticket</button>
+    </div>
+  </div>
+  <div id="modal-usuario" class="modal hidden">
+    <div class="modal-content">
+      <h2>Bienvenido/a</h2>
+      <p>Por favor, ingresá tu nombre para continuar:</p>
+      <input type="text" id="nombre-usuario-input" placeholder="Tu nombre" />
+      <button id="btn-guardar-usuario">Ingresar</button>
+    </div>
+  </div>
+
 <script src="/js/carrito.js" defer></script>
 
 <%- include("partials/footer.ejs") %>

@@ -59,11 +59,11 @@ function mostrarCarrito() {
     contenedor.appendChild(tabla);
     const total = carrito.reduce((acc, item) => acc + item.quantity * parseFloat(item.price), 0);
     const totalTexto = document.createElement("p");
-    totalTexto.innerHTML = `<div class="total"><strong>Total del carrito: $${total.toFixed(2)}</strong><button id="confirmar-compra">Confirmar compra</button></div>`;
+    totalTexto.innerHTML = `<div class="total"><strong>Total del carrito: $${total.toFixed(2)}</strong><div class="confirmar-container"><button id="confirmar-compra">Confirmar compra</button></div></div>`;
     contenedor.appendChild(totalTexto);
-    document.getElementById("confirmar-compra").addEventListener("click", finalizarCompra);
+    document.getElementById("confirmar-compra").addEventListener("click", confirmarCompra);
 }
-mostrarCarrito()
+mostrarCarrito();
 
 function actualizarCantidad(id, accion) {
   let carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
@@ -91,7 +91,6 @@ function eliminarProducto(id) {
   mostrarCarrito();
 }
 
-//document.getElementById("confirmar-compra").addEventListener("click", async () => {
 async function finalizarCompra(){
   const carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
   const usuario = localStorage.getItem("usuario");
@@ -118,9 +117,7 @@ async function finalizarCompra(){
     const data = await response.json();
 
     if (response.ok) {
-      alert("Compra registrada correctamente. ID de venta: " + data.ventaId);
-      sessionStorage.removeItem("carrito");
-      mostrarCarrito(); // Actualizá visualmente
+      confirmarCompraExitosa();
     } else {
       alert("Error al registrar la compra: " + (data.error || "Error desconocido"));
     }
@@ -129,4 +126,60 @@ async function finalizarCompra(){
     alert("Error de conexión al registrar la compra.");
   }
 }
-//});
+
+function confirmarCompraExitosa() {
+  const modal = document.getElementById("modal-compra");
+  modal.classList.remove("hidden");
+  localStorage.removeItem("usuario");
+  sessionStorage.removeItem("carrito");
+
+  document.getElementById("btn-reiniciar").addEventListener("click", () => {
+    //localStorage.removeItem("usuario");
+    //sessionStorage.removeItem("carrito");
+    location.reload();
+  });
+
+  document.getElementById("btn-imprimir").addEventListener("click", () => {
+    alert("Función de impresión aún no implementada.");
+  });
+}
+
+function confirmarCompra(){
+  let div = document.querySelector(".confirmar-container");
+  let boton = document.getElementById("confirmar-compra");
+  if (boton) {
+    div.innerHTML = '<button class="finalizarCompra">✔️</button><button class="cancelarCompra">❌</button>';
+  }
+  document.querySelector(".finalizarCompra").addEventListener("click", function(){
+    finalizarCompra();
+  });
+  document.querySelector(".cancelarCompra").addEventListener("click", function(){
+    mostrarCarrito();
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modalUsuario = document.getElementById("modal-usuario");
+  const inputNombre = document.getElementById("nombre-usuario-input");
+  const btnGuardar = document.getElementById("btn-guardar-usuario");
+
+  const usuarioGuardado = localStorage.getItem("usuario");
+
+  if (!usuarioGuardado) {
+    modalUsuario.classList.remove("hidden");
+
+    btnGuardar.addEventListener("click", () => {
+      const nombre = inputNombre.value.trim();
+
+      if (nombre.length < 2) {
+        alert("Por favor ingresá un nombre válido");
+        return;
+      }
+
+      localStorage.setItem("usuario", nombre);
+      modalUsuario.classList.add("hidden");
+    });
+  } else {
+    modalUsuario.classList.add("hidden");
+  }
+});
